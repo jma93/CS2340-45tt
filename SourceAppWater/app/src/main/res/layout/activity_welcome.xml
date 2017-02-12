@@ -11,21 +11,22 @@
     tools:context="a404_notfound.sourceappwater.controllers.WelcomeActivity">
 
     <Button
-        android:text="Log in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/register_button"
-        android:layout_marginBottom="60dp"
-        android:onClick="onLoginPressed" />
-
-    <Button
         android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/register_button"
-        android:layout_marginBottom="10dp"
-        android:layout_above="@+id/login_button"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/login_button"
+        android:layout_marginBottom="60dp" />
+
+    <Button
+        android:text="Log in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_button"
+        android:onClick="onLoginPressed"
+        android:layout_above="@+id/register_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
 </RelativeLayout>
