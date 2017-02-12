@@ -14,11 +14,11 @@
         android:text="Log in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Login_button"
-        android:onClick=""
+        android:id="@+id/login_button"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/Signup_button"
-        android:layout_marginBottom="60dp" />
+        android:layout_marginBottom="60dp"
+        android:onClick="onLoginPressed" />
 
     <Button
         android:text="Sign up"
@@ -26,6 +26,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/Signup_button"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/Login_button"
+        android:layout_above="@+id/login_button"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
