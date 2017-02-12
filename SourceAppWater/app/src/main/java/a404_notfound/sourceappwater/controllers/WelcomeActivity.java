@@ -16,7 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for the Log in button
+     * Button handler for the login button
      * @param view the button
      */
     protected void onLoginPressed(View view) {
