@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Login_button"
+        android:onClick=""
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/Signup_button"
         android:layout_marginBottom="60dp" />
