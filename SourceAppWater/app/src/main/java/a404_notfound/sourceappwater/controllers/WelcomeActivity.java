@@ -23,4 +23,13 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * Button handler for the register button
+     * @param view the button
+     */
+    protected void onRegisterPressed(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
 }
