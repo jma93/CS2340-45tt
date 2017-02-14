@@ -3,6 +3,7 @@ package a404_notfound.sourceappwater.controllers;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -95,14 +96,17 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             }
         });
 
+        //Change the screen to logout screen when sign up is pressed;
         Button mEmailSignInButton = (Button) findViewById(R.id.signup_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+                Intent switchScreen = new Intent(getApplicationContext(), LogoutActivity.class);
+                startActivity(switchScreen);
             }
-        });
 
+        });
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
@@ -367,6 +371,13 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             mAuthTask = null;
             showProgress(false);
         }
+
+    }
+
+    //Change the screen to logout screen when sign up is pressed;
+    public void onSignUpPressed(View view) {
+        Intent switchScreen = new Intent(this, LogoutActivity.class);
+        startActivity(switchScreen);
     }
 }
 

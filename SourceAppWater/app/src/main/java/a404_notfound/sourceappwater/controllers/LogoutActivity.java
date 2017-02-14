@@ -2,6 +2,7 @@ package a404_notfound.sourceappwater.controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import a404_notfound.sourceappwater.R;
 
