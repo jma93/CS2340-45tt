@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private EditText mPasswordReEntry;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -71,10 +72,20 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
+        mPasswordReEntry = (EditText) findViewById(R.id.reEnterPass);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        mPasswordReEntry.setOnEditorActionListener(new TextView.OnEditorActionListener()  {
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     attemptLogin();
@@ -153,10 +164,12 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mPasswordReEntry.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String passwordReent = mPasswordReEntry.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -165,6 +178,13 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
+            cancel = true;
+        }
+
+        // Check that password Re-entry is the same as password
+        if (!password.equals(passwordReent)) {
+            mPasswordReEntry.setError("The Passwords must match");
+            focusView = mPasswordReEntry;
             cancel = true;
         }
 

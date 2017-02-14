@@ -32,6 +32,17 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:id="@+id/name" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
@@ -63,6 +74,23 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/re_enter_password"
+                    android:id="@+id/reEnterPass" />
+            </android.support.design.widget.TextInputLayout>
+
+            <CheckBox
+                android:text="@string/i_agree_to_the_terms_and_conditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox" />
+
             <Button
                 android:id="@+id/signup_button"
                 style="?android:textAppearanceSmall"
@@ -74,4 +102,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

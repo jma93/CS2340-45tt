@@ -15,4 +15,7 @@
         completions."
     </string>
     <string name="title_activity_register">Register</string>
+    <string name="i_agree_to_the_terms_and_conditions">I agree to the terms and conditions</string>
+    <string name="re_enter_password">Re - Enter Password</string>
+    <string name="name">Name</string>
 </resources>
