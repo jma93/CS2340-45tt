@@ -34,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a404_notfound.sourceappwater.R;
+import a404_notfound.sourceappwater.model.UsersAndPasswords;
 
+import static a404_notfound.sourceappwater.model.UsersAndPasswords.*;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -46,6 +48,11 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+
+    /*
+        UserAndPasswords Holder
+     */
+    //private static UsersAndPasswords usp;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -215,6 +222,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            UsersAndPasswords.insert(email, password);
             canContinue = true;
         }
         return canContinue;
