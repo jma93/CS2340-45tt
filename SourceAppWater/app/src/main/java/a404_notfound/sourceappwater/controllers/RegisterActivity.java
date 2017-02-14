@@ -101,9 +101,10 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
-                Intent switchScreen = new Intent(getApplicationContext(), LogoutActivity.class);
-                startActivity(switchScreen);
+                if (attemptLogin()) {
+                    Intent switchScreen = new Intent(getApplicationContext(), LogoutActivity.class);
+                    startActivity(switchScreen);
+                }
             }
 
         });
@@ -160,9 +161,10 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private boolean attemptLogin() {
+        boolean canContinue = false;
         if (mAuthTask != null) {
-            return;
+            return true;
         }
 
         // Reset errors.
@@ -213,7 +215,9 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            canContinue = true;
         }
+        return canContinue;
     }
 
     private boolean isEmailValid(String email) {
