@@ -385,11 +385,5 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         }
 
     }
-
-    //Change the screen to logout screen when sign up is pressed;
-    public void onSignUpPressed(View view) {
-        Intent switchScreen = new Intent(this, LogoutActivity.class);
-        startActivity(switchScreen);
-    }
 }
 

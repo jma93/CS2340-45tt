@@ -58,7 +58,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-    //private static UsersAndPasswords usp;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -86,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        //Sets event for when Log in button is clicked
         Button mEmailSignInButton = (Button) findViewById(R.id.signin_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -167,15 +167,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean cancel = false;
         View focusView = null;
 
-  //       Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
+        // Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(password) && !isPasswordValid(email, password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
-        }
-        // Is Password contained in the classs
-        if (!isPasswordValid(email, password)) {
-            mPasswordView.setError("The password does not match email");
+        } else if (isEmailValid(email) && !isPasswordValid(email, password)) {
+            mPasswordView.setError(getString(R.string.error_password_not_match));
             focusView = mPasswordView;
             cancel = true;
         }
@@ -207,12 +205,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
     private boolean isEmailValid(String email) {
         return UsersAndPasswords.isContained(email);
-        //usp.isContained(email);
     }
 
     private boolean isPasswordValid(String email, String password) {
         return UsersAndPasswords.passwordMatch(email, password);
-        //usp.passwordMatch(email, password);
     }
 
     /**

@@ -26,7 +26,14 @@ public class UsersAndPasswords {
     }
 
     public static boolean passwordMatch(String email, String pass) {
-        String compPass = usp.get(email);
-        return compPass.equals(pass);
+        if (pass == null) {
+            return false;
+        }
+        if (usp.containsKey(email)) {
+            if(usp.get(email).equals(pass)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
