@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SourceAppWater</string>
+    <string name="app_name">Omi</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
