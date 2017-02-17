@@ -7,12 +7,16 @@
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in short</string>
     <string name="action_sign_up">Sign up</string>
-    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_email">This email is not registered</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_password_not_match">This password does not match the email address</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
     <string name="title_activity_register">Register</string>
+    <string name="i_agree_to_the_terms_and_conditions">I agree to the terms and conditions</string>
+    <string name="re_enter_password">Re - Enter Password</string>
+    <string name="name">Name</string>
 </resources>

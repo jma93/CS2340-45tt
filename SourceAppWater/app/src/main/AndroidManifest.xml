@@ -24,10 +24,16 @@
         </activity>
         <activity
             android:name=".controllers.LoginActivity"
-            android:label="Log in"></activity>
+            android:label="Log in">
+        </activity>
         <activity
             android:name=".controllers.RegisterActivity"
-            android:label="@string/title_activity_register"></activity>
+            android:label="@string/title_activity_register">
+        </activity>
+        <activity
+            android:name=".controllers.LogoutActivity"
+            android:label="Log out">
+        </activity>
     </application>
 
 </manifest>
