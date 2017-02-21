@@ -25,21 +25,22 @@
         android:layout_height="wrap_content"
         android:id="@+id/register_button"
         android:onClick="onRegisterPressed"
-        android:background="@drawable/register2"
+        android:background="@android:drawable/btn_default"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:text="Register"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@color/colorPrimary" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/login_button"
         android:onClick="onLoginPressed"
-        android:background="@drawable/login2"
+        android:background="@android:drawable/btn_default"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@color/colorPrimary"
+        android:text="Login" />
 
     <ImageView
         android:layout_width="wrap_content"
