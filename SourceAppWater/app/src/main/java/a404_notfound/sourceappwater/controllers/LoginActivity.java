@@ -99,7 +99,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
+        //Sets event for when Cancel button is clicked
+        Button cancel_button = (Button) findViewById(R.id.cancel_bt);
+
+      cancel_button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent switchScreen = new Intent(getApplicationContext(), WelcomeActivity.class);
+                    startActivity(switchScreen);
+
+            }
+        });
+
+
     }
+
+
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
