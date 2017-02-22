@@ -1,5 +1,7 @@
 package a404_notfound.sourceappwater.controllers;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,39 +34,25 @@ import com.google.firebase.database.ValueEventListener;
 
 import a404_notfound.sourceappwater.model.*;
 
-public class LogoutActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
+public class BaseActivity extends AppCompatActivity {
     private DatabaseReference mRef;
     private  FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static final String TAG = "Info";
-    public static List<String> userCert = Arrays.asList("User", "Worker", "Manager", "Administrator");
 
     // Firebase Objects
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private String userClassification;
-    private EditText mName;
+    private TextView display;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logout);
+        setContentView(R.layout.activity_base);
 
-        mName = (EditText) findViewById(R.id.nameofuser);
-        mName.setOnEditorActionListener(new TextView.OnEditorActionListener()  {
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    return true;
-                }
-                return false;
-            }
-        });
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, userCert);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
         // Set up fire base Authentication and Listener for that authentication
         mAuth = FirebaseAuth.getInstance();
@@ -91,6 +79,8 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
                 // whenever data at this location is updated.
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d(TAG, "Value is: " + value);
+                String t = dataSnapshot.child(mAuth.getCurrentUser().getUid()).getValue().toString();
+                display.setText(t);
             }
 
             @Override
@@ -99,23 +89,13 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-        Button mUpdateButton = (Button) findViewById(R.id.logout_button);
-        mUpdateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatabaseReference mRefChild = mRef.child(mAuth.getCurrentUser().getUid());
-                String tpe = createProfile((String) spinner.getSelectedItem());
-                mRefChild.setValue(tpe);
-                Intent switchScreen = new Intent(getApplicationContext(), BaseActivity.class);
-                startActivity(switchScreen);
-            }
-        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        display = (TextView) findViewById(R.id.textView2);
     }
 
     //Stop the firbase Listener
@@ -125,32 +105,5 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
-    }
-
-
-    private String createProfile(String ucas) {
-        Object e;
-        String name = mName.getText().toString();
-        if (ucas == "Admin") {
-            e = new Admin(name);
-        } else if(ucas =="Worker") {
-            e = new Worker(name);
-        } else if (ucas == "Manager") {
-            e = new Manager(name);
-        } else {
-            e = new RegisteredUser(name);
-        };
-        return e.toString();
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        userClassification = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        userClassification = "User";
     }
 }

@@ -174,7 +174,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 canContinue = false;
                             } else {
                                 canContinue = true;
-                                Intent switchScreen = new Intent(getApplicationContext(), LogoutActivity.class);
+                                Intent switchScreen = new Intent(getApplicationContext(), BaseActivity.class);
                                 startActivity(switchScreen);
                             }
                         }
