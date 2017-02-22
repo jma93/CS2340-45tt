@@ -43,7 +43,7 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private String _userClassification;
+    private String userClassification;
     private EditText mName;
 
     @Override
@@ -104,7 +104,7 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 DatabaseReference mRefChild = mRef.child(mAuth.getCurrentUser().getUid());
-                String tpe = createProfile();
+                String tpe = createProfile(userClassification);
                 mRefChild.setValue(tpe);
             }
         });
@@ -126,10 +126,9 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
 
-    private String createProfile() {
+    private String createProfile(String ucas) {
         Object e;
         String name = mName.getText().toString();
-        String ucas = _userClassification;
         if (ucas == "Admin") {
             e = new Admin(name);
         } else if(ucas =="Worker") {
@@ -145,11 +144,11 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        _userClassification = parent.getItemAtPosition(position).toString();
+        userClassification = parent.getItemAtPosition(position).toString();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        _userClassification = "User";
+        userClassification = "User";
     }
 }
