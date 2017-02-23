@@ -20,6 +20,7 @@ import a404_notfound.sourceappwater.model.Worker;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -103,10 +104,10 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
         mUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference mRefChild = mRef.child(mAuth.getCurrentUser().getUid());
-                String tpe = createProfile((String) spinner.getSelectedItem());
-                mRefChild.setValue(tpe);
-                Intent switchScreen = new Intent(getApplicationContext(), BaseActivity.class);
+                //DatabaseReference mRefChild = mRef.child(mAuth.getCurrentUser().getUid());
+                createProfile((String) spinner.getSelectedItem());
+                //mRefChild.setValue(tpe);
+                Intent switchScreen = new Intent(getApplicationContext(), HqActivity.class);
                 startActivity(switchScreen);
             }
         });
@@ -128,19 +129,47 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
 
-    private String createProfile(String ucas) {
-        Object e;
+    private void createProfile(String ucas) {
         String name = mName.getText().toString();
+        String a = "/users/";
+        Map<String, Object> values = new HashMap<>();
+
         if (ucas == "Admin") {
-            e = new Admin(name);
+            Admin e = new Admin(name);
         } else if(ucas =="Worker") {
-            e = new Worker(name);
+            Worker e = new Worker(name);
+            String nme = e.getUsername();
+            String addrs = e.getAddress();
+            String coor = e.getCoordinates();
+            String uid = mAuth.getCurrentUser().getUid();
+            values.put(a + uid + "/name/", nme);
+            values.put(a+ uid + "/addrs/", addrs);
+            values.put(a + uid + "/coor/", coor);
+            values.put(a + uid + "/accttype/", e.toString());
+            mRef.updateChildren(values);
         } else if (ucas == "Manager") {
-            e = new Manager(name);
+            Manager e = new Manager(name);
+            String nme = e.getUsername();
+            String addrs = e.getAddress();
+            String coor = e.getCoordinates();
+            String uid = mAuth.getCurrentUser().getUid();
+            values.put(a + uid + "/name/", nme);
+            values.put(a+ uid + "/addrs/", addrs);
+            values.put(a + uid + "/coor/", coor);
+            values.put(a + uid + "/accttype/", e.toString());
+            mRef.updateChildren(values);
         } else {
-            e = new RegisteredUser(name);
-        };
-        return e.toString();
+            RegisteredUser e = new RegisteredUser(name);
+            String nme = e.getUsername();
+            String addrs = e.getAddress();
+            String coor = e.getCoordinates();
+            String uid = mAuth.getCurrentUser().getUid();
+            values.put(a + uid + "/name/", nme);
+            values.put(a+ uid + "/addrs/", addrs);
+            values.put(a + uid + "/coor/", coor);
+            values.put(a + uid + "/accttype/", e.toString());
+            mRef.updateChildren(values);
+        }
     }
 
     @Override

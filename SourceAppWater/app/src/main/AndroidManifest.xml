@@ -31,7 +31,9 @@
         <activity
             android:name=".controllers.LogoutActivity"
             android:label="Log out" />
-        <activity android:name=".controllers.BaseActivity"></activity>
+        <activity android:name=".controllers.BaseActivity" />
+        <activity android:name=".controllers.HqActivity" />
+        <activity android:name=".controllers.EditInfoActivity"></activity>
     </application>
 
 </manifest>

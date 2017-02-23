@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import a404_notfound.sourceappwater.R;
-
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,29 +16,41 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class BaseActivity extends AppCompatActivity {
+import a404_notfound.sourceappwater.R;
+
+public class EditInfoActivity extends AppCompatActivity {
+
+    private EditText mName;
+    private EditText mAddrs;
+    private EditText mCoord;
+
     private DatabaseReference mRef;
-    private  FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static final String TAG = "Info";
 
     // Firebase Objects
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private TextView usename;
-    private TextView address;
-    private TextView coordinates;
-    private TextView accountType;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(R.layout.activity_edit_info);
 
 
+        mName = (EditText) findViewById(R.id.editname);
+        mAddrs = (EditText) findViewById(R.id.editaddrs);
+        mCoord = (EditText) findViewById(R.id.editcoor);
+
+        Button changes = (Button) findViewById(R.id.submitchangesbttn);
+        changes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateInfo();
+                Intent switchScreen = new Intent(getApplicationContext(), BaseActivity.class);
+                startActivity(switchScreen);
+            }
+        });
 
         // Set up fire base Authentication and Listener for that authentication
         mAuth = FirebaseAuth.getInstance();
@@ -60,15 +69,6 @@ public class BaseActivity extends AppCompatActivity {
             }
         };
 
-        Button mEditInfo = (Button) findViewById(R.id.editinfobutton);
-        mEditInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchScreen = new Intent(getApplicationContext(), EditInfoActivity.class);
-                startActivity(switchScreen);
-            }
-        });
-
         mRef = database.getReference();
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -77,16 +77,6 @@ public class BaseActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d(TAG, "Value is: " + value);
-
-                String n = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("name").getValue().toString();
-                String m = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("addrs").getValue().toString();
-                String o = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("coor").getValue().toString();
-                String p = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("accttype").getValue().toString();
-                usename.setText(n);
-                address.setText(m);
-                coordinates.setText(mAuth.getCurrentUser().getEmail());
-                accountType.setText(p);
-
             }
 
             @Override
@@ -101,10 +91,6 @@ public class BaseActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-        usename = (TextView) findViewById(R.id.username1);
-        address = (TextView) findViewById(R.id.address);
-        coordinates = (TextView) findViewById(R.id.coordinates);
-        accountType = (TextView) findViewById(R.id.accoungtype);
     }
 
     //Stop the firbase Listener
@@ -114,5 +100,17 @@ public class BaseActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    private void updateInfo() {
+        String name = mName.getText().toString();
+        String address = mAddrs.getText().toString();
+        String coordinates  = mCoord.getText().toString();
+
+        DatabaseReference useInfo = mRef.child("/users").child(mAuth.getCurrentUser().getUid());
+
+        useInfo.child("/name").setValue(name);
+        useInfo.child("addrs").setValue(address);
+        useInfo.child("/coor").setValue(coordinates);
     }
 }

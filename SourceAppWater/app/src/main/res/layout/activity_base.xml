@@ -8,13 +8,55 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="a404_notfound.sourceappwater.controllers.BaseActivity">
+    tools:context="a404_notfound.sourceappwater.controllers.BaseActivity"
+    android:clickable="true">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:id="@+id/address"
+        android:text="Address"
+        android:layout_below="@+id/username1"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/coordinates"
+        android:text="Coordinate"
+        android:layout_below="@+id/address"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:id="@+id/username1"
+        android:text="Name"
+        android:layout_below="@+id/accoungtype"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/accoungtype"
+        android:text="Account Type"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:id="@+id/textView2" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Edit Info?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/accoungtype"
+        android:layout_marginBottom="64dp"
+        android:id="@+id/editinfobutton"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/colorAccent" />
+
 </RelativeLayout>
