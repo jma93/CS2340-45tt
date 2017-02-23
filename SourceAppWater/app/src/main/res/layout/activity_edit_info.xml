@@ -36,7 +36,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@+id/username1"
+            android:hint="Username"
             android:id="@+id/editname" />
     </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +50,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@+id/address"
+            android:hint="Address"
             android:id="@+id/editaddrs" />
     </android.support.design.widget.TextInputLayout>
 
@@ -61,11 +61,20 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@+id/coordinates"
-            android:id="@+id/editcoor" />
     </android.support.design.widget.TextInputLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Coordinates"
+        android:id="@+id/editcoor"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

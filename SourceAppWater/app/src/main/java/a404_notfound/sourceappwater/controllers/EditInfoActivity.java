@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import a404_notfound.sourceappwater.R;
+import a404_notfound.sourceappwater.model.FirbaseUtility;
 
 public class EditInfoActivity extends AppCompatActivity {
 
@@ -24,13 +25,9 @@ public class EditInfoActivity extends AppCompatActivity {
     private EditText mAddrs;
     private EditText mCoord;
 
-    private DatabaseReference mRef;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static final String TAG = "Info";
 
-    // Firebase Objects
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirbaseUtility fbinstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +38,7 @@ public class EditInfoActivity extends AppCompatActivity {
         mName = (EditText) findViewById(R.id.editname);
         mAddrs = (EditText) findViewById(R.id.editaddrs);
         mCoord = (EditText) findViewById(R.id.editcoor);
+        fbinstance = new FirbaseUtility();
 
         Button changes = (Button) findViewById(R.id.submitchangesbttn);
         changes.setOnClickListener(new View.OnClickListener() {
@@ -52,54 +50,19 @@ public class EditInfoActivity extends AppCompatActivity {
             }
         });
 
-        // Set up fire base Authentication and Listener for that authentication
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
-
-        mRef = database.getReference();
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                //String value = dataSnapshot.getValue(String.class);
-                //Log.d(TAG, "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+        fbinstance.addAuthListner();
     }
 
     //Stop the firbase Listener
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
+        fbinstance.removeAuthListener();
     }
 
     private void updateInfo() {
@@ -107,7 +70,7 @@ public class EditInfoActivity extends AppCompatActivity {
         String address = mAddrs.getText().toString();
         String coordinates  = mCoord.getText().toString();
 
-        DatabaseReference useInfo = mRef.child("/users").child(mAuth.getCurrentUser().getUid());
+        DatabaseReference useInfo = fbinstance.getmRef().child("/users").child(fbinstance.getUser());
 
         useInfo.child("/name").setValue(name);
         useInfo.child("addrs").setValue(address);

@@ -134,8 +134,17 @@ public class LogoutActivity extends AppCompatActivity implements AdapterView.OnI
         String a = "/users/";
         Map<String, Object> values = new HashMap<>();
 
-        if (ucas == "Admin") {
+        if (ucas == "Administrator") {
             Admin e = new Admin(name);
+            String nme = e.getUsername();
+            String addrs = e.getAddress();
+            String coor = e.getCoordinates();
+            String uid = mAuth.getCurrentUser().getUid();
+            values.put(a + uid + "/name/", nme);
+            values.put(a+ uid + "/addrs/", addrs);
+            values.put(a + uid + "/coor/", coor);
+            values.put(a + uid + "/accttype/", e.toString());
+            mRef.updateChildren(values);
         } else if(ucas =="Worker") {
             Worker e = new Worker(name);
             String nme = e.getUsername();

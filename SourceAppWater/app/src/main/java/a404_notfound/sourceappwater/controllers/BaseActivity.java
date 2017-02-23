@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import a404_notfound.sourceappwater.R;
+import a404_notfound.sourceappwater.model.FirbaseUtility;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,19 +20,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class BaseActivity extends AppCompatActivity {
-    private DatabaseReference mRef;
-    private  FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private static final String TAG = "Info";
+public class BaseActivity extends DrawerActivity {
+      private static final String TAG = "Info";
 
-    // Firebase Objects
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
     private TextView usename;
     private TextView address;
     private TextView coordinates;
     private TextView accountType;
+    private FirbaseUtility fbinstance;
 
 
 
@@ -39,26 +36,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
-
-
-
-        // Set up fire base Authentication and Listener for that authentication
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
 
         Button mEditInfo = (Button) findViewById(R.id.editinfobutton);
         mEditInfo.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +46,9 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
 
-        mRef = database.getReference();
-        mRef.addValueEventListener(new ValueEventListener() {
+
+        fbinstance = new FirbaseUtility();
+        fbinstance.getmRef().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -78,13 +56,13 @@ public class BaseActivity extends AppCompatActivity {
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d(TAG, "Value is: " + value);
 
-                String n = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("name").getValue().toString();
-                String m = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("addrs").getValue().toString();
-                String o = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("coor").getValue().toString();
-                String p = dataSnapshot.child("users").child(mAuth.getCurrentUser().getUid()).child("accttype").getValue().toString();
+                String n = dataSnapshot.child("users").child(fbinstance.getUser()).child("name").getValue().toString();
+                String m = dataSnapshot.child("users").child(fbinstance.getUser()).child("addrs").getValue().toString();
+                String o = dataSnapshot.child("users").child(fbinstance.getUser()).child("coor").getValue().toString();
+                String p = dataSnapshot.child("users").child(fbinstance.getUser()).child("accttype").getValue().toString();
                 usename.setText(n);
                 address.setText(m);
-                coordinates.setText(mAuth.getCurrentUser().getEmail());
+                coordinates.setText(fbinstance.getUserEmail());
                 accountType.setText(p);
 
             }
@@ -100,7 +78,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+        fbinstance.addAuthListner();
         usename = (TextView) findViewById(R.id.username1);
         address = (TextView) findViewById(R.id.address);
         coordinates = (TextView) findViewById(R.id.coordinates);
@@ -111,8 +89,11 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
+        fbinstance.removeAuthListener();
+    }
+
+    @Override
+    protected int getcView() {
+        return R.layout.activity_base;
     }
 }

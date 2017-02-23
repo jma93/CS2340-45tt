@@ -46,6 +46,14 @@ public class Admin {
         this.loginAttemps = loginAttemps;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public String toString() {
         return "Admin";
     }
