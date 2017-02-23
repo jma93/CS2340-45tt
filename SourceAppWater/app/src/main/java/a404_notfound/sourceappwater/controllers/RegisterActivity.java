@@ -115,6 +115,15 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             }
 
         });
+
+        Button cancel = (Button) findViewById(R.id.cancl_registration);
+        cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchScreen = new Intent(getApplicationContext(), WelcomeActivity.class);
+                startActivity(switchScreen);
+            }
+        });
         mLoginFormView = findViewById(R.id.login_form);
 
         // Create Auth Instance for user as well as userListener

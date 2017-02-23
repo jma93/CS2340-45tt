@@ -94,6 +94,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        Button cancel = (Button) findViewById(R.id.cancel_bt);
+        cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchScreen = new Intent(getApplicationContext(), WelcomeActivity.class);
+                startActivity(switchScreen);
+            }
+        });
+
     }
 
 

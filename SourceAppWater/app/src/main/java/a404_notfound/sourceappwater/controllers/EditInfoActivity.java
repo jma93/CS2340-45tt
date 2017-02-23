@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import a404_notfound.sourceappwater.R;
 import a404_notfound.sourceappwater.model.FirbaseUtility;
 
-public class EditInfoActivity extends AppCompatActivity {
+public class EditInfoActivity extends DrawerActivity {
 
     private EditText mName;
     private EditText mAddrs;
@@ -32,8 +32,6 @@ public class EditInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_info);
-
 
         mName = (EditText) findViewById(R.id.editname);
         mAddrs = (EditText) findViewById(R.id.editaddrs);
@@ -75,5 +73,9 @@ public class EditInfoActivity extends AppCompatActivity {
         useInfo.child("/name").setValue(name);
         useInfo.child("addrs").setValue(address);
         useInfo.child("/coor").setValue(coordinates);
+    }
+    @Override
+    protected int getcView() {
+        return R.layout.activity_edit_info;
     }
 }
