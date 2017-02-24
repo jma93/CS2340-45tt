@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SourceAppWater</string>
+    <string name="app_name">Omi</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -19,4 +19,10 @@
     <string name="i_agree_to_the_terms_and_conditions">I agree to the terms and conditions</string>
     <string name="re_enter_password">Re - Enter Password</string>
     <string name="name">Name</string>
+    <string name="title_activity_navigate">NavigateActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

@@ -6,5 +6,13 @@ package a404_notfound.sourceappwater.model;
  * A worker in the model.
  */
 
-public class Worker {
+public class Worker extends RegisteredUser {
+    public Worker(String name) {
+        super(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Worker";
+    }
 }

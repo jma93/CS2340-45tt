@@ -1,29 +1,23 @@
 package a404_notfound.sourceappwater.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by Lase on 2/12/2017.
- *
- * A registered user in the model.
+ * Created by Joshua on 2/21/2017.
  */
 
-public class RegisteredUser {
+public class Admin {
     private String username;
     private String address;
     private String coordinates;
     private int loginAttemps;
-    private Map<String, String> usinfo = new HashMap<>();
 
-    public RegisteredUser() {
+    public Admin() {
         username = "No Name";
         coordinates = "None";
         address = "None";
         loginAttemps = 0;
     }
 
-    public RegisteredUser(String name) {
+    public Admin(String name) {
         this();
         username = name;
     }
@@ -52,26 +46,15 @@ public class RegisteredUser {
         this.loginAttemps = loginAttemps;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public void setAddress(String address) {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "User";
+    public String getAddress() {
+        return address;
     }
 
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> ret = new HashMap<>();
-        ret.put("name", username);
-        ret.put("addrs", address);
-        ret.put("coord", coordinates);
-        ret.put("logAtmps", loginAttemps);
-
-        return ret;
+    public String toString() {
+        return "Admin";
     }
 }

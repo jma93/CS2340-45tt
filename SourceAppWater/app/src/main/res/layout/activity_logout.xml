@@ -11,7 +11,7 @@
     tools:context="a404_notfound.sourceappwater.controllers.LogoutActivity">
 
     <Button
-        android:text="Log out"
+        android:text="Update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -19,4 +19,36 @@
         android:layout_marginBottom="46dp"
         android:id="@+id/logout_button"
         android:onClick="onLogoutPressed" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:text="What type of user are you?"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tell us your name..."
+            android:id="@+id/nameofuser" />
+    </android.support.design.widget.TextInputLayout>
+
 </RelativeLayout>

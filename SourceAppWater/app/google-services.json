@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "583689669621",
+    "firebase_url": "https://watersourceapp-d952c.firebaseio.com",
+    "project_id": "watersourceapp-d952c",
+    "storage_bucket": "watersourceapp-d952c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583689669621:android:b175bd6aeeae09b0",
+        "android_client_info": {
+          "package_name": "a404_notfound.sourceappwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583689669621-s5gu0etcc6b73a9dgrvmu4lvcrbu30cv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "a404_notfound.sourceappwater",
+            "certificate_hash": "d5d7a54df03482ff2a1ed1bc142559757ad5d0f6"
+          }
+        },
+        {
+          "client_id": "583689669621-h46uo3c95tah5ncpjtdlcpidhsn4mh08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcYAzSjaJe9ZdBFZVYI5CRtQZqxPuNYHQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583689669621-h46uo3c95tah5ncpjtdlcpidhsn4mh08.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
