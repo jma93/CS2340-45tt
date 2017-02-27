@@ -1,8 +1,13 @@
 package a404_notfound.sourceappwater.controllers;
 
-/**
- * Created by Zohra Tabassum on 2/27/2017.
- */
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class ReportsActivity {
+public class ReportsActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_reports);
+    }
 }

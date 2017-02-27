@@ -34,7 +34,8 @@
         <activity android:name=".controllers.BaseActivity" />
         <activity android:name=".controllers.HqActivity" />
         <activity android:name=".controllers.EditInfoActivity" />
-        <activity android:name=".controllers.DrawerActivity"></activity>
+        <activity android:name=".controllers.DrawerActivity" />
+        <activity android:name=".controllers.ReportsActivity"></activity>
     </application>
 
 </manifest>
