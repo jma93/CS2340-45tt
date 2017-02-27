@@ -74,6 +74,8 @@ public class DrawerActivity extends Activity {
                 startActivity(new Intent(getApplicationContext(), BaseActivity.class));
             } else if (position == 5 ) {
                 startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+            } else if (position ==  2){
+                startActivity(new Intent(getApplicationContext(), ReportsActivity.class));
             }
         }
     }
