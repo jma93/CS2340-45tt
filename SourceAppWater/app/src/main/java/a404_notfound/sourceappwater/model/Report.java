@@ -10,8 +10,8 @@ public abstract class Report {
     private int[] time;
     private static int reportNumber;
     private String reporter;
-    private int[] coordinates;
-    public Report (String reporter, int[] coordinates) {
+    private String coordinates;
+    public Report (String reporter, String coordinates) {
         this.reporter = reporter;
         this.coordinates = coordinates;
         //add date and time from fire base as default.
