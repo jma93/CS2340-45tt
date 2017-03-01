@@ -11,10 +11,30 @@ public abstract class Report {
     private static int reportNumber;
     private String reporter;
     private String coordinates;
+
     public Report (String reporter, String coordinates) {
         this.reporter = reporter;
         this.coordinates = coordinates;
         //add date and time from fire base as default.
         reportNumber++;
     }
+
+    public String getReporter() {
+        return this.reporter;
+    }
+
+    public String getCoordinates() {
+        return this.coordinates;
+    }
+
+    public int getReportNumber() {
+        return this.reportNumber;
+    }
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
+    }
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
 }
